@@ -10,6 +10,35 @@
   <%= @train.route.name %>
 </p>
 
+<p>
+  <strong>Плацкартных вагонов:</strong>
+  <%= @train.qtt_of 'Плацкартный' %>
+</p>
+
+<p>
+  <strong>Купейных вагонов: </strong>
+  <%= @train.qtt_of 'Купейный' %>
+</p>
+
+<p>
+  <strong>Нижних плацкартных мест:</strong>
+  <%= @train.seats_qtt('Плацкартный', 'bottom') %>
+</p>
+
+<p>
+  <strong>Верхних плацкартных мест:</strong>
+  <%= @train.seats_qtt('Плацкартный', 'top') %>
+</p>
+
+<p>
+  <strong>Нижних купейных мест:</strong>
+  <%= @train.seats_qtt('Купейный', 'bottom') %>
+</p>
+
+<p>
+  <strong>Верхних купейных мест:</strong>
+  <%= @train.seats_qtt('Купейный', 'top') %>
+</p>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
