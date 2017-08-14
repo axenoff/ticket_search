@@ -16,6 +16,7 @@ class RoutesController < ApplicationController
   end
 
   def create
+    @stations = RailwayStation.all
     @route = Route.new(route_params)
     if @route.save
       redirect_to @route
