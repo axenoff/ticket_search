@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= "#{@ticket.first_name} #{@ticket.middle_name} #{@ticket.last_name}"  %>
+</p>
+
+<p>
+  <strong>Start_station:</strong>
+  <%= @ticket.start_station.title %>
+</p>
+
+<p>
+  <strong>Finish_station:</strong>
+  <%= @ticket.finish_station.title %>
+</p>
+
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>
