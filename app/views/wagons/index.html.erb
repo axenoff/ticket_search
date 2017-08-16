@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Wagons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Train</th>
+      <th>Type</th>
+      <th>Bottom seats</th>
+      <th>Top seats</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wagons.each do |wagon| %>
+      <tr>
+        <td><%= wagon.train.number %></td>
+        <td><%= wagon.type_of_wagon %></td>
+        <td><%= wagon.bottom_seats %></td>
+        <td><%= wagon.top_seats %></td>
+        <td><%= link_to 'Show', wagon %></td>
+        <td><%= link_to 'Edit', edit_wagon_path(wagon) %></td>
+        <td><%= link_to 'Destroy', wagon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Wagon', new_wagon_path %>
