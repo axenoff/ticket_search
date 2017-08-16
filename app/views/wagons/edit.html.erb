@@ -1,4 +1,4 @@
-<h1>New Wagon</h1>
+<h1>Editing Wagon</h1>
 
 <%= form_for(@wagon) do |f| %>
   <% if @wagon.errors.any? %>
@@ -39,5 +39,4 @@
     <%= f.submit %>
   </div>
 <% end %>
-<%= link_to 'Show', @wagon %> |
-<%= link_to 'Back', @wagons_path %>
+<%= link_to 'Back', wagon_path(@wagon) %>
