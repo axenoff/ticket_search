@@ -18,8 +18,8 @@
   </div>
 
   <div class = "field"> 
-    <%= f.select(:type_of_wagon) do %>
-      <% [['Плацкартный', 'Плацкартный'], ['Купейный', 'Купейный']].each do |c| -%>
+    <%= f.select(:type) do %>
+      <% [['Coupe', 'CoupeWagon'], ['Economy', 'EconomyWagon'], ['Sleep', 'SleepWagon'], ['Sitting', 'SittingWagon']].each do |c| -%>
         <%= content_tag(:option, c.first, value: c.last) %>
       <% end %>
     <% end %>
@@ -33,6 +33,21 @@
   <div class="field">
     <%= f.label :top_seats %>
     <%= f.text_field :top_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label :side_bottom_seats %>
+    <%= f.text_field :side_bottom_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label :side_top_seats %>
+    <%= f.text_field :side_top_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sitting_places %>
+    <%= f.text_field :sitting_places %>
   </div>
 
   <div class="actions">

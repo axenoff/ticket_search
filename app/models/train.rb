@@ -7,7 +7,7 @@ class Train < ApplicationRecord
   def qtt_of(type_of_wagon)
     pass = []
     self.wagons.each do |wagon|
-      pass << wagon if wagon.type_of_wagon == type_of_wagon
+      pass << wagon if wagon.type == type_of_wagon
     end
     return pass.size
   end
@@ -16,11 +16,11 @@ class Train < ApplicationRecord
     qtt = 0
     if type_of_seats == 'bottom'
       self.wagons.each do |wagon|
-        qtt += wagon.bottom_seats if wagon.type_of_wagon == type_of_wagon
+        qtt += wagon.bottom_seats if wagon.type == type_of_wagon
       end
     elsif type_of_seats == 'top'
       self.wagons.each do |wagon|
-        qtt += wagon.top_seats if wagon.type_of_wagon == type_of_wagon
+        qtt += wagon.top_seats if wagon.type == type_of_wagon
       end
     end
     return qtt

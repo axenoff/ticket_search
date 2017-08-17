@@ -44,6 +44,6 @@ private
   end
 
   def wagon_params
-    params.require(:wagon).permit(:train_id, :type_of_wagon, :bottom_seats, :top_seats)
+    params.require(:wagon).permit(:train_id, :type, :bottom_seats, :top_seats, :side_bottom_seats, :side_top_seats, :sitting_places)
   end
 end

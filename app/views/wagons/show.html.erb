@@ -7,7 +7,7 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @wagon.type_of_wagon %>
+  <%= @wagon.type %>
 </p>
 
 <p>
@@ -18,6 +18,21 @@
 <p>
   <strong>Top_seats:</strong>
   <%= @wagon.top_seats %>
+</p>
+
+<p>
+  <strong>Side_bottom_seats:</strong>
+  <%= @wagon.side_bottom_seats %>
+</p>
+
+<p>
+  <strong>Side_top_seats:</strong>
+  <%= @wagon.side_top_seats %>
+</p>
+
+<p>
+  <strong>Sitting_places:</strong>
+  <%= @wagon.sitting_places %>
 </p>
 
 <%= link_to 'Edit', edit_wagon_path(@wagon) %> |
