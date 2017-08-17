@@ -5,6 +5,9 @@ class Wagon < ApplicationRecord
 
   before_validation :set_number
 
+  scope :from_head, -> { order(:number) }
+  scope :from_tail, -> { order(number: :desc) }
+
 private
   def set_number
     if self.train.wagons.empty?

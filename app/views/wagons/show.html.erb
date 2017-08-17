@@ -10,30 +10,40 @@
   <%= @wagon.type %>
 </p>
 
+<% if @wagon.bottom_seats.present? %>
 <p>
   <strong>Bottom_seats:</strong>
   <%= @wagon.bottom_seats %>
 </p>
+<% end %>
 
+<% if @wagon.top_seats.present? %>
 <p>
   <strong>Top_seats:</strong>
   <%= @wagon.top_seats %>
 </p>
+<% end %>
 
+<% if @wagon.side_bottom_seats.present? %>
 <p>
   <strong>Side_bottom_seats:</strong>
   <%= @wagon.side_bottom_seats %>
 </p>
+<% end %>
 
+<% if @wagon.side_top_seats.present? %>
 <p>
   <strong>Side_top_seats:</strong>
   <%= @wagon.side_top_seats %>
 </p>
+<% end %>
 
+<% if @wagon.sitting_places.present? %>
 <p>
   <strong>Sitting_places:</strong>
   <%= @wagon.sitting_places %>
 </p>
+<% end %>
 
 <%= link_to 'Edit', edit_wagon_path(@wagon) %> |
 <%= link_to 'Back', wagons_path %>

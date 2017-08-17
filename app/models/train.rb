@@ -4,25 +4,29 @@ class Train < ApplicationRecord
   has_many :tickets, foreign_key: :finish_station_id
   has_many :wagons
 
-  def qtt_of(type_of_wagon)
-    pass = []
-    self.wagons.each do |wagon|
-      pass << wagon if wagon.type == type_of_wagon
-    end
-    return pass.size
+  def seats_qtt(type_of_wagon, type_of_seats)
+    Wagon.where(type: type_of_wagon, train_id: self.id).sum("#{type_of_seats}")
   end
 
-  def seats_qtt(type_of_wagon, type_of_seats)
-    qtt = 0
-    if type_of_seats == 'bottom'
-      self.wagons.each do |wagon|
-        qtt += wagon.bottom_seats if wagon.type == type_of_wagon
-      end
-    elsif type_of_seats == 'top'
-      self.wagons.each do |wagon|
-        qtt += wagon.top_seats if wagon.type == type_of_wagon
-      end
-    end
-    return qtt
-  end
+  # def qtt_of(type_of_wagon)
+  #   pass = []
+  #   self.wagons.each do |wagon|
+  #     pass << wagon if wagon.type == type_of_wagon
+  #   end
+  #   return pass.size
+  # end
+
+  # def seats_qtt(type_of_wagon, type_of_seats)
+  #   qtt = 0
+  #   if type_of_seats == 'bottom'
+  #     self.wagons.each do |wagon|
+  #       qtt += wagon.bottom_seats if wagon.type == type_of_wagon
+  #     end
+  #   elsif type_of_seats == 'top'
+  #     self.wagons.each do |wagon|
+  #       qtt += wagon.top_seats if wagon.type == type_of_wagon
+  #     end
+  #   end
+  #   return qtt
+  # end
 end

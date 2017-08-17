@@ -17,7 +17,17 @@
   </div>
 
   <div class = "field">
+    <%= f.label 'Маршрут поезда' %>
     <%= f.collection_select :route_id, Route.all, :id, :name %>
+  </div>
+
+  <div class = "field"> 
+    <%= f.label 'Нумерация вагонов' %>
+    <%= f.select(:numbers_order) do %>
+      <% [['С головы поезда', true], ['С хвоста поезда', false]].each do |c| -%>
+        <%= content_tag(:option, c.first, value: c.last) %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="actions">

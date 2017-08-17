@@ -10,35 +10,20 @@
   <%= @train.route.name %>
 </p>
 
+<strong>Список вагонов:</strong>
+<% if @train.numbers_order? %>
 <p>
-  <strong>Плацкартных вагонов:</strong>
-  <%= @train.qtt_of 'Плацкартный' %>
+  <% @train.wagons.from_head.each do |wagon| %>
+  <%= link_to "#{wagon.number}", wagon_path(wagon) %>
+  <% end %>
 </p>
+<% else %>
+  <% @train.wagons.from_tail.each do |wagon| %>
+  <%= link_to "#{wagon.number}", wagon_path(wagon) %>
+  <% end %>
+<% end %>
 
-<p>
-  <strong>Купейных вагонов: </strong>
-  <%= @train.qtt_of 'Купейный' %>
-</p>
 
-<p>
-  <strong>Нижних плацкартных мест:</strong>
-  <%= @train.seats_qtt('Плацкартный', 'bottom') %>
-</p>
-
-<p>
-  <strong>Верхних плацкартных мест:</strong>
-  <%= @train.seats_qtt('Плацкартный', 'top') %>
-</p>
-
-<p>
-  <strong>Нижних купейных мест:</strong>
-  <%= @train.seats_qtt('Купейный', 'bottom') %>
-</p>
-
-<p>
-  <strong>Верхних купейных мест:</strong>
-  <%= @train.seats_qtt('Купейный', 'top') %>
-</p>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
