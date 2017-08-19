@@ -14,14 +14,16 @@
 <% if @train.numbers_order? %>
 <p>
   <% @train.wagons.from_head.each do |wagon| %>
-  <%= link_to "#{wagon.number}", wagon_path(wagon) %>
+  <%= link_to "#{wagon.number}", [@train, wagon] %>
   <% end %>
 </p>
 <% else %>
   <% @train.wagons.from_tail.each do |wagon| %>
-  <%= link_to "#{wagon.number}", wagon_path(wagon) %>
+  <%= link_to "#{wagon.number}", [@train, wagon] %>
   <% end %>
 <% end %>
+
+<%= link_to 'Добавить вагон', new_train_wagon_path(@train) %>
 
 
 

@@ -10,10 +10,11 @@ class Wagon < ApplicationRecord
 
 private
   def set_number
-    if self.train.wagons.empty?
+    train = Train.find(train_id)
+    if train.wagons.empty?
       self.number = 1
     else
-      self.number = self.train.wagons.last.number + 1
+      self.number = train.wagons.last.number + 1
     end
   end
 end
