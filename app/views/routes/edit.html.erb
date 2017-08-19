@@ -19,7 +19,7 @@
   </div>
 
   <div class="field">
-    <%= f.collection_select(:railway_station_ids, RailwayStation.all, :railway_stations_route_ids, :title, {:prompt => "Please Select Stations"}, {:multiple => true}) %>
+    <%= f.collection_select(:railway_station_ids, RailwayStation.all, :id, :title, {:prompt => "Please Select Stations"}, {:multiple => true}) %>
   </div>
 
   <div class="actions">
