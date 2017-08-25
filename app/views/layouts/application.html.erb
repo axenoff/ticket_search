@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tutu</title>
+    <title>Ticket search</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if user_signed_in? %>
+      Аккаунт: <%= current_user.email %>
+      <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'Войти', new_user_session_path %>
+    <% end %>
   </head>
 
   <body>

@@ -1,0 +1,24 @@
+<h3>Поиск билетов</h3>
+
+<%= form_tag search_path, :action => 'show', method: :get do %>
+Станция отправления:
+<%= select_tag :start_station_id, options_from_collection_for_select(RailwayStation.all, :id, :title, params[:start_station_id]), include_blank: true,class: 'form-control' %>
+Станция назначения:
+<%= select_tag :finish_station_id, options_from_collection_for_select(RailwayStation.all, :id, :title, params[:finish_station_id]), include_blank: true,class: 'form-control' %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<hr/>
+
+<% if @params.present? %>
+<h3>Результаты поиска: </h3>
+  <% @params.each do |train| %>
+    <p><%= "Поезд №#{train[0]} Отправление: #{train[1]} Прибытие: #{train[2]}" %><%= link_to 'Купить билет', new_ticket_path %></p>
+  <% end %>
+<% elsif params[:start_station_id] &&  params[:finish_station_id]%>
+<h3>Результаты поиска: </h3>
+  Поезда не найдены
+<% end %>
+
+
+

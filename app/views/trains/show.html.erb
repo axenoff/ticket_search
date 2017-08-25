@@ -7,7 +7,11 @@
 
 <p>
   <strong>Route:</strong>
-  <%= @train.route.name %>
+  <% if @train.route.present? %>
+    <%= @train.route.name %>
+  <% else %>
+    Маршрут не назначен
+  <% end %>
 </p>
 
 <strong>Список вагонов:</strong>

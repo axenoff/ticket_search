@@ -16,12 +16,36 @@ class RailwayStation < ApplicationRecord
   end
 
   def update_order_number(route, order_number)
-    station_route = railway_stations_routes.where(route: route).first
+    #station_route(route)
+    station_route = station_route(route)
     station_route.update(order_number: order_number) if station_route
   end
 
   def number_in(route)
-    station_route = railway_stations_routes.where(route: route).first
-    station_route.try(:order_number)
+    #station_route(route)
+    station_route(route).try(:order_number)
+  end
+
+  def update_arrival_time(route, arrival_time)
+    station_route = station_route(route)
+    station_route.update(arrival_time: arrival_time) if station_route
+  end
+
+  def update_departure_time(route, departure_time)
+    station_route = station_route(route)
+    station_route.update(departure_time: departure_time) if station_route
+  end
+
+  def arrival_time(route)
+    station_route(route).try(:arrival_time)
+  end
+
+  def departure_time(route)
+    station_route(route).try(:departure_time)
+  end
+
+  protected
+  def station_route(route)
+    @station_route||= railway_stations_routes.where(route: route).first
   end
 end

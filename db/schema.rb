@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817130511) do
+ActiveRecord::Schema.define(version: 20170824200526) do
 
   create_table "railway_stations", force: :cascade do |t|
     t.string   "title"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20170817130511) do
     t.integer "railway_station_id"
     t.integer "route_id"
     t.integer "order_number"
+    t.string  "arrival_time"
+    t.string  "departure_time"
   end
 
   create_table "routes", force: :cascade do |t|
@@ -57,8 +59,20 @@ ActiveRecord::Schema.define(version: 20170817130511) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.boolean  "admin",                  default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "wagons", force: :cascade do |t|
