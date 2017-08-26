@@ -1,28 +1,33 @@
 class TicketsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new]
+  before_action :set_ticket, only: [:show, :destroy]
+  before_action :set_search_params, only: [:new, :create]
 
   def index
-    @tickets = Ticket.all
+    if current_user.admin?
+      @tickets = Ticket.all
+    else
+      @tickets = current_user.tickets.all
+    end
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
   end
 
   def new
-    @ticket = current_user.tickets.new
+    @ticket = Ticket.new
   end
 
   def edit
   end
 
   def create
-    @stations = RailwayStation.all
+    #@stations = RailwayStation.all
     @ticket = current_user.tickets.new(ticket_params)
     if @ticket.save
       redirect_to @ticket
     else
-      redirect_to search_path
+      render 'new'    
     end
   end
 
@@ -35,12 +40,22 @@ class TicketsController < ApplicationController
   end
 
   def destroy
-    @ticket.destroy
+    @ticket.destroy if @ticket.user == current_user
     redirect_to tickets_path
   end
 
 private
   def ticket_params
-    params.require(:ticket).permit(:first_name, :middle_name, :last_name, :start_station_id, :finish_station_id)
+    params.require(:ticket).permit(:first_name, :middle_name, :last_name, :train_id, :start_station_id, :finish_station_id)
+  end
+
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
+
+  def set_search_params
+    @train = Train.find(params[:ticket][:train_id])
+    @start_station = RailwayStation.find(params[:ticket][:start_station_id])
+    @finish_station = RailwayStation.find(params[:ticket][:finish_station_id])
   end
 end

@@ -13,7 +13,12 @@
 <% if @params.present? %>
 <h3>Результаты поиска: </h3>
   <% @params.each do |train| %>
-    <p><%= "Поезд №#{train[0]} Отправление: #{train[1]} Прибытие: #{train[2]}" %><%= link_to 'Купить билет', new_ticket_path %></p>
+    <%= form_tag new_ticket_path, method: :get %>
+    <%= hidden_field_tag 'ticket[train_id]', train[0] %>
+    <%= hidden_field_tag 'ticket[start_station_id]', params[:start_station_id] %>
+    <%= hidden_field_tag 'ticket[finish_station_id]', params[:finish_station_id] %>
+    <p><%= "Поезд №#{train[0]} Отправление: #{train[1]} Прибытие: #{train[2]}" %>
+    <%= submit_tag("Купить билет") %></p>
   <% end %>
 <% elsif params[:start_station_id] &&  params[:finish_station_id]%>
 <h3>Результаты поиска: </h3>

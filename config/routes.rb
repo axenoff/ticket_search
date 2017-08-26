@@ -16,10 +16,12 @@ Rails.application.routes.draw do
       patch :update_departure_time, on: :member
     end
 
+    resources :tickets
+
     resources :routes
   end
 
-  resources :tickets, only: [:new, :create, :show]
+  resources :tickets
 
   resource :search, only: [:show]
   #resources :wagons

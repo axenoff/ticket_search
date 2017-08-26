@@ -1,6 +1,6 @@
 <h1>New Ticket</h1>
 
-<%= form_for(@ticket) do |f| %>
+<%= form_for @ticket do |f| %>
   <% if @ticket.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
@@ -13,12 +13,16 @@
     </div>
   <% end %>
 
-  <div class = "field">
-    <%= f.collection_select :start_station_id, RailwayStation.all, :id, :title %>
+  <div class="field">
+    <%= f.hidden_field :train_id, :value => @train.id %>
   </div>
 
-  <div class = "field">
-    <%= f.collection_select :finish_station_id, RailwayStation.all, :id, :title %>
+  <div class="field">
+    <%= f.hidden_field :start_station_id, :value => @start_station.id %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :finish_station_id, :value => @finish_station.id %>
   </div>
 
   <div class="field">
@@ -40,4 +44,4 @@
     <%= f.submit %>
   </div>
 <% end %>
-<%= link_to 'Back', @tickets_path %>
+<%= link_to 'Back', @searches_path %>
