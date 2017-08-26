@@ -4,11 +4,7 @@ class TicketsController < ApplicationController
   before_action :set_search_params, only: [:new, :create]
 
   def index
-    if current_user.admin?
-      @tickets = Ticket.all
-    else
-      @tickets = current_user.tickets.all
-    end
+    @tickets = current_user.tickets.all
   end
 
   def show
