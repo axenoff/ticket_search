@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Train:</strong>
+  <%= @wagon.train.number %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @wagon.type %>
+</p>
+
+<% if @wagon.bottom_seats.present? %>
+<p>
+  <strong>Bottom_seats:</strong>
+  <%= @wagon.bottom_seats %>
+</p>
+<% end %>
+
+<% if @wagon.top_seats.present? %>
+<p>
+  <strong>Top_seats:</strong>
+  <%= @wagon.top_seats %>
+</p>
+<% end %>
+
+<% if @wagon.side_bottom_seats.present? %>
+<p>
+  <strong>Side_bottom_seats:</strong>
+  <%= @wagon.side_bottom_seats %>
+</p>
+<% end %>
+
+<% if @wagon.side_top_seats.present? %>
+<p>
+  <strong>Side_top_seats:</strong>
+  <%= @wagon.side_top_seats %>
+</p>
+<% end %>
+
+<% if @wagon.sitting_places.present? %>
+<p>
+  <strong>Sitting_places:</strong>
+  <%= @wagon.sitting_places %>
+</p>
+<% end %>
+<%= link_to 'Назад', [:admin, @wagon.train] %>
+
