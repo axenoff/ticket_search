@@ -6,6 +6,8 @@ class Ticket < ApplicationRecord
 
   after_create :send_notification
 
+  before_destroy :send_notification_delete
+
   def route_name
     "#{start_station.title} - #{finish_station.title}"
   end
@@ -13,5 +15,9 @@ class Ticket < ApplicationRecord
   private
   def send_notification
     TicketsMailer.buy_ticket(self.user, self).deliver_now
+  end
+
+  def send_notification_delete
+    TicketsMailer.delete_ticket(self.user, self).deliver_now
   end
 end
