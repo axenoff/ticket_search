@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :admin do
+    get '', to: 'main#index', as: '/'
+
     resources :trains do
       resources :wagons
       resources :coupe_wagons, :controller => 'wagons'

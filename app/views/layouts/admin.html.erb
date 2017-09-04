@@ -29,17 +29,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
           </button>
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
           
-            <li><%=link_to 'Поиск билетов', search_path %></li>
-            <li><%= current_user ? (link_to 'Личный кабинет', tickets_path) : (link_to 'Личный кабинет', new_user_session_path) %></li>
-            <% if current_user.try(:admin?) %>
-              <li><%= link_to 'Панель администратора', admin_path %></li>
-            <% end %>
-
+            <li><%=link_to 'Билеты', admin_tickets_path %></li>
+            <li><%= link_to 'Маршруты', admin_routes_path %></li>
+            <li><%= link_to 'Поезда', admin_trains_path %></li>
+            <li><%= link_to 'Станции', admin_railway_stations_path %></li>
           </ul>
         </div><!--/.nav-collapse -->
 
