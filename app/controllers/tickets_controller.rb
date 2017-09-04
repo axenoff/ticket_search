@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :new]
+  before_action :authenticate_user!
   before_action :set_ticket, only: [:show, :destroy]
   before_action :set_search_params, only: [:new, :create]
 
@@ -8,6 +8,7 @@ class TicketsController < ApplicationController
   end
 
   def show
+    redirect_to tickets_path, alert: 'У вас нет доступа к этой странице' unless @ticket.user == current_user
   end
 
   def new
