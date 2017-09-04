@@ -1,25 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ticket search</title>
-    <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <% if user_signed_in? %>
-      Вы вошли как: <%= current_user.name %>
-      <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to 'Войти', new_user_session_path %>
-    <% end %>
+
+
+  <head>
+    <div class="container">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <title>Ticket search</title>
+      <%= csrf_meta_tags %>
+
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <% if user_signed_in? %>
+        Вы вошли как: <%= current_user.name %>
+        <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Войти', new_user_session_path %>
+      <% end %>
+      </div>
   </head>
 
   <body>
-    <%= yield %>
-  </body>
-  <footer>
-    <hr>
-      &copy; 2017 Ivan Aksenov
-    </hr>
-  </footer>
+    <div class="container">
+
+
+    <div class="navbar navbar-default navbar-static-top">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+          
+            <li><%=link_to 'Поиск билетов', search_path %></li>
+            <li><%= link_to 'Личный кабинет', tickets_path %></li>
+            <% if current_user.try(:admin?) %>
+              <li><%= link_to 'Панель администратора', admin_tickets_path %></li>
+            <% end %>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+
+      <%= yield %>
+      </div>
+
+    </body>
+    <footer>
+            <div class="container">
+
+      <hr>
+        &copy; 2017 Ivan Aksenov
+      </hr>
+    </div>
+
+    </footer>
 </html>

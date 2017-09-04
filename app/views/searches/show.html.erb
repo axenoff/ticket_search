@@ -1,29 +1,59 @@
+<div class="row">
+<div class="col-md-12">
 <h3>Поиск билетов</h3>
 
 <%= form_tag search_path, :action => 'show', method: :get do %>
+<div class="row">
+<div class="col-md-6">
 Станция отправления:
-<%= select_tag :start_station_id, options_from_collection_for_select(RailwayStation.all, :id, :title, params[:start_station_id]), include_blank: true,class: 'form-control' %>
+<%= select_tag :start_station_id, options_from_collection_for_select(RailwayStation.all, :id, :title, params[:start_station_id]), include_blank: true, class: 'form-control' %>
+</div>
+<div class="col-md-6">
 Станция назначения:
-<%= select_tag :finish_station_id, options_from_collection_for_select(RailwayStation.all, :id, :title, params[:finish_station_id]), include_blank: true,class: 'form-control' %>
-  <%= submit_tag("Search") %>
+<%= select_tag :finish_station_id, options_from_collection_for_select(RailwayStation.all, :id, :title, params[:finish_station_id]), include_blank: true, class: 'form-control' %>
+</div>
+</div>
+
+<%= button_tag(type: "submit", class: "btn btn-primary") do %>
+    Поиск
+<% end %>
 <% end %>
 
 <hr/>
 
 <% if @params.present? %>
 <h3>Результаты поиска: </h3>
+
+<table class="table table-striped">
+  <tbody>
+
   <% @params.each do |train| %>
+  <tr>
+  <td>
+
     <%= form_tag new_ticket_path, method: :get %>
     <%= hidden_field_tag 'ticket[train_id]', train[0] %>
     <%= hidden_field_tag 'ticket[start_station_id]', params[:start_station_id] %>
     <%= hidden_field_tag 'ticket[finish_station_id]', params[:finish_station_id] %>
-    <p><%= "Поезд №#{train[0]} Отправление: #{train[1]} Прибытие: #{train[2]}" %>
-    <%= submit_tag("Купить билет") %></p>
+
+<%= "Поезд №#{train[0]} Отправление: #{train[1]} Прибытие: #{train[2]}" %>
+
+    <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+    Купить билет
+<% end %>
+
+</td>
+</tr>
   <% end %>
+  </tbody>
+  </table>
+
 <% elsif params[:start_station_id] &&  params[:finish_station_id]%>
 <h3>Результаты поиска: </h3>
   Поезда не найдены
 <% end %>
+</div>
+</div>
 
 
 
